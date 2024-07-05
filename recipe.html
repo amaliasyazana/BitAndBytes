@@ -10,7 +10,6 @@
             const urlParams = new URLSearchParams(window.location.search);
             const recipeId = urlParams.get('id');
 
-            function fetchRecipeDetails() {
             function fetchRecipeDetails(recipeId) {
                 const data = null;
 
@@ -19,21 +18,6 @@
                 xhr.addEventListener('readystatechange', function () {
                     if (this.readyState === this.DONE) {
                         const recipe = JSON.parse(this.responseText);
-                        document.querySelector('.recipe-title').textContent = recipe.name;
-                        document.querySelector('.recipe-title-top').textContent = recipe.name;
-                        document.querySelector('.recipe-description').textContent = recipe.description || 'A delicious recipe.';
-                        document.querySelector('.recipe-ingredients').innerHTML = recipe.sections[0].components.map(component => `<li>${component.raw_text}</li>`).join('');
-                        document.querySelector('.recipe-preparations').innerHTML = recipe.instructions.map(instruction => `<li>${instruction.display_text}</li>`).join('');
-                        if (recipe.thumbnail_url) {
-                            document.querySelector('.recipe-image').src = recipe.thumbnail_url;
-                        } else {
-                            document.querySelector('.recipe-image').src = 'placeholder.jpg';
-                        }
-                        if (recipe.original_video_url) {
-                            document.querySelector('.recipe-video').innerHTML = `<video controls><source src="${recipe.original_video_url}" type="video/mp4"></video>`;
-                        } else {
-                            document.querySelector('.recipe-video').textContent = 'No video available for this recipe.';
-                        }
                         displayRecipe(recipe);
                     }
                 });
@@ -64,7 +48,6 @@
             }
 
             if (recipeId) {
-                fetchRecipeDetails();
                 fetchRecipeDetails(recipeId);
             }
 
@@ -111,21 +94,7 @@
         </nav>
     </header>
     <section class="recipe-details">
-        <h1 class="recipe-title-top">Loading...</h1>
         <div class="recipe-content">
-            <img class="recipe-image" src="placeholder.jpg" alt="Recipe Image">
-            <h1 class="recipe-title">Loading...</h1>
-            <p class="recipe-description">Loading...</p>
-            <h2>Ingredients</h2>
-            <ul class="recipe-ingredients">
-                <li>Loading...</li>
-            </ul>
-            <h2>Preparations</h2>
-            <ul class="recipe-preparations">
-                <li>Loading...</li>
-            </ul>
-            <div class="recipe-video">
-                Loading...
             <div class="video-column">
                 <div class="recipe-video">
                     Loading...
