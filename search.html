@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="search-styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('ingredient');
+
+            if (searchTerm) {
+                fetchRecipesByIngredient(searchTerm);
+            } else {
+                // Handle case when no search term is provided
+                const resultsContainer = document.querySelector('.search-results');
+                resultsContainer.innerHTML = '<p>No search term provided.</p>';
+            }
+
+            function fetchRecipesByIngredient(ingredient) {
+                const data = null;
+
+                const xhr = new XMLHttpRequest();
+
+                xhr.addEventListener('readystatechange', function () {
+                    if (this.readyState === this.DONE) {
+                        const recipes = JSON.parse(this.responseText).results;
+                        displayRecipes(recipes);
+                    }
+                });
+
+                xhr.open('GET', `https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=${encodeURIComponent(ingredient)}`);
+                xhr.setRequestHeader('x-rapidapi-key', 'c733c4e178msh80dba6d81be6151p1df09ejsncfe133c0f079');
+                xhr.setRequestHeader('x-rapidapi-host', 'tasty.p.rapidapi.com');
+
+                xhr.send(data);
+            }
+
+            function displayRecipes(recipes) {
+                const resultsContainer = document.querySelector('.search-results');
+
+                if (recipes.length === 0) {
+                    resultsContainer.innerHTML = '<p>No recipes found.</p>';
+                } else {
+                    const recipesHTML = recipes.map(recipe => `
+                        <div class="recipe-card">
+                            <img src="${recipe.thumbnail_url || 'placeholder.jpg'}" alt="${recipe.name}">
+                            <h3>${recipe.name}</h3>
+                            <p>${recipe.description || 'No description available.'}</p>
+                            <a href="recipe.html?id=${recipe.id}" class="btn">View Recipe</a>
+                        </div>
+                    `).join('');
+
+                    resultsContainer.innerHTML = recipesHTML;
+                }
+            }
+
+            // Ingredient search form submission
+            const searchForm = document.querySelector('.search-form');
+            const searchInput = document.querySelector('.search-input');
+
+            searchForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const searchTerm = searchInput.value.trim().toLowerCase();
+
+                // Redirect to search.html with search term as parameter
+                window.location.href = `search.html?ingredient=${encodeURIComponent(searchTerm)}`;
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Baking Community</div>
+            <ul>
+                <li><a href="main.html#home">Home</a></li>
+                <li><a href="main.html#recipes">Recipes</a></li>
+                <li><a href="main.html#forum">Forum</a></li>
+                <li><a href="main.html#events">Events</a></li>
+                <li><a href="main.html#contact">Contact</a></li>
+                <!-- Search form in header -->
+                <li>
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="Search ingredients...">
+                        <button type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="search-results">
+        <h1>Search Results</h1>
+        <!-- Results will be dynamically added here -->
+    </section>
+    <footer>
+        <p>&copy; 2024 Baking Community. All rights reserved.</p>
+    </footer>
+</body>
+</html>

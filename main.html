@@ -34,13 +34,15 @@
                             const p = document.createElement('p');
                             p.textContent = recipe.description || 'A delicious recipe.'; // Default description if not provided
 
+                            const viewRecipeBtn = document.createElement('a');
+                            viewRecipeBtn.href = `recipe.html?id=${recipe.id}`;
+                            viewRecipeBtn.textContent = 'View Recipe';
+                            viewRecipeBtn.classList.add('btn');
+
                             recipeCard.appendChild(img);
                             recipeCard.appendChild(h3);
                             recipeCard.appendChild(p);
-
-                            recipeCard.addEventListener('click', function() {
-                                window.location.href = `recipe.html?id=${recipe.id}`;
-                            });
+                            recipeCard.appendChild(viewRecipeBtn);
 
                             recipeGallery.appendChild(recipeCard);
                         });
@@ -52,6 +54,10 @@
                 xhr.setRequestHeader('x-rapidapi-host', 'tasty.p.rapidapi.com');
 
                 xhr.send(data);
+
+                // Display loading indicator
+                const recipeGallery = document.querySelector('.recipe-gallery');
+                recipeGallery.innerHTML = '<p>Loading...</p>';
             }
 
             fetchRecipes();
@@ -81,7 +87,7 @@
     <section class="recipes" id="recipes">
         <h2>Featured Recipes</h2>
         <div class="recipe-gallery">
-            <!-- Recipe cards will be dynamically inserted here -->
+            <!-- Loading indicator will be displayed here -->
         </div>
     </section>
     <footer>

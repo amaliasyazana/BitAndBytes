@@ -54,14 +54,69 @@ header nav ul li a:hover {
     color: #ff6347;
 }
 
+header nav ul li .search-form {
+    position: relative;
+    margin-left: auto;
+}
+
+header nav ul li .search-input {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 0.5em;
+}
+
+header nav ul li .search-input:focus {
+    outline: none;
+    border-color: #ff6347; /* Matching the hover color */
+}
+
+header nav ul li .search-form button {
+    padding: 0.5em 1em;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+header nav ul li .search-form button:hover {
+    background-color: #cc4e38; /* Darker shade for hover */
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2em;
+}
+
 /* Recipe details section */
 .recipe-details {
-    max-width: 800px;
+    max-width: 1500px;
     margin: 2em auto;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 1em;
+    display: flex; /* Flex container to create columns */
+}
+
+.recipe-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.video-column {
+    flex: 1; /* Left column width */
+}
+
+.details-column {
+    flex: 2; /* Right column width */
+    padding-left: 2em;
 }
 
 .recipe-title {
@@ -79,7 +134,7 @@ header nav ul li a:hover {
 .recipe-image {
     width: 100%;
     max-height: 400px;
-    object-fit: cover;
+    object-fit: contain; /* Prevents zooming/stretching */
     border-radius: 8px;
     margin-bottom: 1em;
 }
@@ -100,13 +155,4 @@ header nav ul li a:hover {
 .recipe-video video {
     max-width: 100%;
     border-radius: 8px;
-}
-
-/* Footer styling */
-footer {
-    text-align: center;
-    padding: 1em 0;
-    background-color: #333;
-    color: #fff;
-    margin-top: 2em;
 }
