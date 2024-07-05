@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baking Community Forum</title>
+    <link rel="stylesheet" href="forum-styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Baking Community</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#recipes">Recipes</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="forum" id="forum">
+        <h2>Forum</h2>
+        <div class="comment-form">
+            <h3>Leave a Comment</h3>
+            <form id="commentForm">
+                <textarea id="comment" placeholder="Write your comment here..." required></textarea>
+                <input type="file" id="imageUpload" accept="image/*">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="comments-section">
+            <h3>Comments</h3>
+            <div class="comments">
+                <!-- Comments will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Baking Community. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const commentForm = document.getElementById('commentForm');
+            const commentInput = document.getElementById('comment');
+            const imageUpload = document.getElementById('imageUpload');
+            const commentsSection = document.querySelector('.comments');
+
+            commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const commentText = commentInput.value.trim();
+                const file = imageUpload.files[0];
+
+                if (commentText !== '') {
+                    const commentDiv = document.createElement('div');
+                    commentDiv.classList.add('comment');
+
+                    const textDiv = document.createElement('div');
+                    textDiv.textContent = commentText;
+                    commentDiv.appendChild(textDiv);
+
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.alt = "User uploaded image";
+                            img.style.maxWidth = "200px";
+                            img.style.maxHeight = "200px";
+                            commentDiv.appendChild(img);
+                        }
+                        reader.readAsDataURL(file);
+                    }
+
+                    commentsSection.appendChild(commentDiv);
+                    commentInput.value = ''; // Clear the input
+                    imageUpload.value = ''; // Clear the file input
+                }
+            });
+        });
+    </script>
+</body>
+</html>
