@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const recipeId = urlParams.get('id');
+
+            function fetchRecipeDetails() {
+                const data = null;
+
+                const xhr = new XMLHttpRequest();
+
+                xhr.addEventListener('readystatechange', function () {
+                    if (this.readyState === this.DONE) {
+                        const recipe = JSON.parse(this.responseText);
+                        document.querySelector('.recipe-title').textContent = recipe.name;
+                        document.querySelector('.recipe-description').textContent = recipe.description || 'A delicious recipe.';
+                        document.querySelector('.recipe-ingredients').innerHTML = recipe.sections[0].components.map(component => `<li>${component.raw_text}</li>`).join('');
+                        document.querySelector('.recipe-preparations').innerHTML = recipe.instructions.map(instruction => `<li>${instruction.display_text}</li>`).join('');
+                        if (recipe.video_url) {
+                            document.querySelector('.recipe-video').innerHTML = `<video controls><source src="${recipe.video_url}" type="video/mp4"></video>`;
+                        }
+                    }
+                });
+
+                xhr.open('GET', `https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`);
+                xhr.setRequestHeader('x-rapidapi-key', 'c733c4e178msh80dba6d81be6151p1df09ejsncfe133c0f079');
+                xhr.setRequestHeader('x-rapidapi-host', 'tasty.p.rapidapi.com');
+
+                xhr.send(data);
+            }
+
+            if (recipeId) {
+                fetchRecipeDetails();
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Baking Community</div>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#recipes">Recipes</a></li>
+                <li><a href="index.html#forum">Forum</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="recipe-details">
+        <h1 class="recipe-title">Loading...</h1>
+        <p class="recipe-description">Loading...</p>
+        <h2>Ingredients</h2>
+        <ul class="recipe-ingredients">
+            <li>Loading...</li>
+        </ul>
+        <h2>Preparations</h2>
+        <ul class="recipe-preparations">
+            <li>Loading...</li>
+        </ul>
+        <div class="recipe-video">
+            <!-- Video will be inserted here -->
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Baking Community. All rights reserved.</p>
+    </footer>
+</body>
+</html>

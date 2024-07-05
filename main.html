@@ -22,6 +22,7 @@
                         recipes.forEach(recipe => {
                             const recipeCard = document.createElement('div');
                             recipeCard.classList.add('recipe-card');
+                            recipeCard.dataset.recipeId = recipe.id; // Store recipe ID
 
                             const img = document.createElement('img');
                             img.src = recipe.thumbnail_url || 'default.jpg'; // Fallback image if thumbnail_url is null
@@ -31,11 +32,15 @@
                             h3.textContent = recipe.name;
 
                             const p = document.createElement('p');
-                            p.textContent = recipe.description || 'A delicious recipe.';
+                            p.textContent = recipe.description || 'A delicious recipe.'; // Default description if not provided
 
                             recipeCard.appendChild(img);
                             recipeCard.appendChild(h3);
                             recipeCard.appendChild(p);
+
+                            recipeCard.addEventListener('click', function() {
+                                window.location.href = `recipe.html?id=${recipe.id}`;
+                            });
 
                             recipeGallery.appendChild(recipeCard);
                         });
