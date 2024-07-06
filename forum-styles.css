@@ -1,65 +1,73 @@
-/* forum-styles.css */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f9f9f9;
+    background-color: #F9F7E8;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #FFF1E4;
     padding: 15px 20px;
-    position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-}
-
-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
 }
 
-nav .logo {
-    font-size: 24px;
-    font-weight: bold;
+.logo-container {
+    margin-left: 20px;
 }
 
-nav ul {
+.logo-container img.logo-image {
+    height: 80px;
+}
+
+nav {
+    background-color: #FFF1E4;
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 999;
+}
+
+nav .nav-links {
     list-style: none;
     display: flex;
+    justify-content: center;
     margin: 0;
     padding: 0;
 }
 
-nav ul li {
+nav .nav-links li {
     margin-left: 20px;
 }
 
-nav ul li a {
-    color: #fff;
+nav .nav-links li a {
+    color: #000000;
     text-decoration: none;
     padding: 5px 10px;
     border-radius: 5px;
+    font-family: "DM Serif Display", serif;
 }
 
-nav ul li a:hover {
-    background-color: #575757;
+nav .nav-links li a:hover {
+    background-color: #CDB693;
 }
 
 .forum {
-    padding: 80px 20px; /* Adjust for header height */
+    padding: 80px 20px;
     text-align: center;
-    background-color: #fff;
+    background-color: #FFF1E4;
 }
 
 .forum h2 {
-    font-size: 36px;
+    font-size: 50px;
     margin-bottom: 20px;
     color: #333;
+    font-family: 'Rubik Mono One', sans-serif;
 }
 
 .comment-form {
@@ -69,6 +77,7 @@ nav ul li a:hover {
 .comment-form h3 {
     font-size: 24px;
     margin-bottom: 10px;
+    font-family: "DM Serif Display", serif;
 }
 
 .comment-form form {
@@ -88,39 +97,61 @@ nav ul li a:hover {
 }
 
 .comment-form button {
-    background-color: #ff6347;
-    color: #fff;
+    background-color: #F37171;
+    color: #000000;
     padding: 10px 20px;
+    margin-top: 20px;
     border: none;
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
+    font-family: "DM Serif Display", serif;
 }
 
 .comment-form button:hover {
-    background-color: #ff4500;
+    background-color:  #CDB693;
 }
 
 .comments-section {
-    text-align: left;
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .comments-section h3 {
     font-size: 24px;
     margin-bottom: 10px;
+    font-family: "DM Serif Display", serif;
 }
 
-.comments .comment {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.comments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.comment {
+    background-color: #ff9b9b;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.comment:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.comment img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 footer {
-    background-color: #333;
+    background-color: #CDB693;
     color: #fff;
     text-align: center;
     padding: 20px 0;
