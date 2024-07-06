@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Details</title>
     <link rel="stylesheet" href="recipe-styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        $(document).ready(function() {
             const urlParams = new URLSearchParams(window.location.search);
             const recipeId = urlParams.get('id');
 
@@ -30,20 +31,19 @@
             }
 
             function displayRecipe(recipe) {
-                document.querySelector('.recipe-title').textContent = recipe.name;
-                //document.querySelector('.recipe-title-top').textContent = recipe.name;
-                document.querySelector('.recipe-description').textContent = recipe.description || 'A delicious recipe.';
-                document.querySelector('.recipe-ingredients').innerHTML = recipe.sections[0].components.map(component => `<li>${component.raw_text}</li>`).join('');
-                document.querySelector('.recipe-preparations').innerHTML = recipe.instructions.map(instruction => `<li>${instruction.display_text}</li>`).join('');
+                $('.recipe-title').text(recipe.name);
+                $('.recipe-description').text(recipe.description || 'A delicious recipe.');
+                $('.recipe-ingredients').html(recipe.sections[0].components.map(component => `<li>${component.raw_text}</li>`).join(''));
+                $('.recipe-preparations').html(recipe.instructions.map(instruction => `<li>${instruction.display_text}</li>`).join(''));
                 if (recipe.thumbnail_url) {
-                    document.querySelector('.recipe-image').src = recipe.thumbnail_url;
+                    $('.recipe-image').attr('src', recipe.thumbnail_url);
                 } else {
-                    document.querySelector('.recipe-image').src = 'placeholder.jpg';
+                    $('.recipe-image').attr('src', 'placeholder.jpg');
                 }
                 if (recipe.original_video_url) {
-                    document.querySelector('.recipe-video').innerHTML = `<video controls><source src="${recipe.original_video_url}" type="video/mp4"></video>`;
+                    $('.recipe-video').html(`<video controls><source src="${recipe.original_video_url}" type="video/mp4"></video>`);
                 } else {
-                    document.querySelector('.recipe-video').textContent = 'No video available for this recipe.';
+                    $('.recipe-video').text('No video available for this recipe.');
                 }
             }
 
@@ -52,12 +52,9 @@
             }
 
             // Ingredient search functionality
-            const searchForm = document.querySelector('.search-form');
-            const searchInput = document.querySelector('.search-input');
-
-            searchForm.addEventListener('submit', function(event) {
+            $('.search-form').on('submit', function(event) {
                 event.preventDefault();
-                const searchTerm = searchInput.value.trim().toLowerCase();
+                const searchTerm = $('.search-input').val().trim().toLowerCase();
 
                 // Redirect to search.html with search term as parameter
                 window.location.href = `search.html?ingredient=${encodeURIComponent(searchTerm)}`;
@@ -70,18 +67,11 @@
         <nav>
             <div class="logo">Baking Community</div>
             <ul>
-<<<<<<< Updated upstream
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#recipes">Recipes</a></li>
-                <li><a href="index.html#forum">Forum</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-=======
                 <li><a href="main.html">Home</a></li>
                 <li><a href="main.html#recipes">Recipes</a></li>
-                <li><a href="main.html#forum">Forum</a></li>
-                <li><a href="main.html#events">Events</a></li>
-                <li><a href="main.html#contact">Contact</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <!-- Search form in header -->
                 <li>
                     <form class="search-form">
@@ -89,7 +79,6 @@
                         <button type="submit">Search</button>
                     </form>
                 </li>
->>>>>>> Stashed changes
             </ul>
         </nav>
     </header>

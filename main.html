@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bit & Bytes</title>
     <link rel="stylesheet" href="styles.css">
+<<<<<<< Updated upstream
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
@@ -19,32 +20,45 @@
             </filter>
         </defs>
     </svg>
+=======
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+>>>>>>> Stashed changes
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        $(document).ready(function () {
+            let from = 0;
+            const size = 20;
+            
             function fetchRecipes() {
                 const data = null;
 
                 const xhr = new XMLHttpRequest();
-
                 xhr.addEventListener('readystatechange', function () {
                     if (this.readyState === this.DONE) {
                         const response = JSON.parse(this.responseText);
                         const recipes = response.results;
-                        const recipeGallery = document.querySelector('.recipe-gallery');
-                        recipeGallery.innerHTML = ''; // Clear existing recipes
+                        const $recipeGallery = $('.recipe-gallery');
+                        $recipeGallery.find('.loading').remove(); // Remove loading indicator
 
                         recipes.forEach(recipe => {
+<<<<<<< Updated upstream
                             const recipeCard = document.createElement('div');
                             recipeCard.classList.add('recipe-card');
                             recipeCard.dataset.recipeId = recipe.id; // Store recipe ID
                             recipeCard.addEventListener('click', function() {
                                 window.location.href = `recipe.html?id=${recipe.id}`;
                             });
+=======
+                            const $recipeCard = $('<div class="recipe-card"></div>').data('recipeId', recipe.id);
+                            const $img = $('<img>').attr('src', recipe.thumbnail_url || 'default.jpg').attr('alt', recipe.name);
+                            const $h3 = $('<h3></h3>').text(recipe.name);
+>>>>>>> Stashed changes
 
-                            const img = document.createElement('img');
-                            img.src = recipe.thumbnail_url || 'default.jpg'; // Fallback image if thumbnail_url is null
-                            img.alt = recipe.name;
+                            $recipeCard.append($img, $h3);
+                            $recipeCard.click(function () {
+                                window.location.href = `recipe.html?id=${recipe.id}`;
+                            });
 
+<<<<<<< Updated upstream
                             const h3 = document.createElement('h3');
                             h3.textContent = recipe.name;
 
@@ -56,22 +70,28 @@
                             recipeCard.appendChild(p);
 
                             recipeGallery.appendChild(recipeCard);
+=======
+                            $recipeGallery.append($recipeCard);
+>>>>>>> Stashed changes
                         });
                     }
                 });
 
-                xhr.open('GET', 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes');
+                xhr.open('GET', `https://tasty.p.rapidapi.com/recipes/list?from=${from}&size=${size}&tags=under_30_minutes`);
                 xhr.setRequestHeader('x-rapidapi-key', 'c733c4e178msh80dba6d81be6151p1df09ejsncfe133c0f079');
                 xhr.setRequestHeader('x-rapidapi-host', 'tasty.p.rapidapi.com');
-
                 xhr.send(data);
 
                 // Display loading indicator
-                const recipeGallery = document.querySelector('.recipe-gallery');
-                recipeGallery.innerHTML = '<p>Loading...</p>';
+                $('.recipe-gallery').append('<p class="loading">Loading...</p>');
             }
 
             fetchRecipes();
+
+            $('.load-more-btn').click(function () {
+                from += size;
+                fetchRecipes();
+            });
         });
     </script>
 </head>
@@ -81,6 +101,7 @@
             <img src="image/logo.png" alt="Logo" class="logo-image">
         </div>
         <nav>
+<<<<<<< Updated upstream
             <ul class="nav-links">
                 <li><a href="main.html">Home</a></li>
                 <li><a href="recipes.html">Recipes</a></li>
@@ -89,6 +110,15 @@
                 <li><a href="search.html">Search</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+=======
+            <div class="logo">Baking Community</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#contact.html">Contact</a></li>
+>>>>>>> Stashed changes
             </ul>
         </nav>
     </header>
@@ -108,6 +138,7 @@
         <div class="recipe-gallery">
             <!-- Loading indicator will be displayed here -->
         </div>
+        <button class="load-more-btn">Load More</button>
     </section>
     <footer>
         <p>&copy; 2024 Bit & Bytes. All rights reserved.</p>

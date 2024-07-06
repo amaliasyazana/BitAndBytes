@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -24,6 +25,24 @@ header {
 
 .logo-container img.logo-image {
     height: 80px; /* Adjust height as needed */
+=======
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #ffffff;
+}
+
+header {
+    background-color: #ff9b9b;
+    padding: 15px 0;
+    width: 100%;
+>>>>>>> Stashed changes
 }
 
 nav {
@@ -53,6 +72,7 @@ nav .nav-links li a {
     font-family: "DM Serif Display", serif;
 }
 
+<<<<<<< Updated upstream
 nav .nav-links li a:hover {
     background-color: #CDB693;
 }
@@ -60,6 +80,15 @@ nav .nav-links li a:hover {
 .hero {
     background-color: #FFF1E4; /* Background color */
     height: 70vh;
+=======
+nav ul li a:hover {
+    background-color: #ff6347;
+}
+
+.hero {
+    background: url('hero-background.jpg') no-repeat center center/cover;
+    height: 30vh;
+>>>>>>> Stashed changes
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,7 +134,12 @@ nav .nav-links li a:hover {
 .recipes {
     padding: 60px 20px;
     text-align: center;
+<<<<<<< Updated upstream
     background-color: #FFF1E4;
+=======
+    background-color: #fff;
+    color: #333; /* Override body color for this section */
+>>>>>>> Stashed changes
 }
 
 .recipes h2 {
@@ -116,19 +150,27 @@ nav .nav-links li a:hover {
 }
 
 .recipe-gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
 }
 
 .recipe-card {
     background-color: #ff9b9b;
+<<<<<<< Updated upstream
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+=======
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 15px;
+>>>>>>> Stashed changes
     margin: 20px;
-    max-width: 300px;
-    padding: 20px;
+    max-width: 1500px;
     text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #ffffff;
 }
 
 .recipe-card img {
@@ -136,26 +178,42 @@ nav .nav-links li a:hover {
     height: 200px;
     object-fit: cover; 
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .recipe-card h3 {
+<<<<<<< Updated upstream
     font-size: 24px;
     margin-top: 15px;
     color: #333;
     font-family: "DM Serif Display", serif;
+=======
+    font-size: 20px;
+    margin-top: 10px;
+    color: #ffffff;
+>>>>>>> Stashed changes
 }
 
 .recipe-card p {
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 10px;
+<<<<<<< Updated upstream
     color: #25242A; 
     font-family: "Ubuntu", sans-serif;
     text-align: justify; 
+=======
+    color: #ffffff;
+}
+
+.recipe-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+>>>>>>> Stashed changes
 }
 
 
 footer {
-    background-color: #333;
+    background-color: rgba(31, 68, 102, 0.8);
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -218,4 +276,21 @@ footer {
 .button:hover:before,
 .button:hover:after {
     transform: none;
+}
+
+/* Load More Button Styles */
+.load-more-btn {
+    background-color: #ff6347;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: #ff4500;
 }
