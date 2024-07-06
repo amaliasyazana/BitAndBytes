@@ -37,6 +37,9 @@
                             const recipeCard = document.createElement('div');
                             recipeCard.classList.add('recipe-card');
                             recipeCard.dataset.recipeId = recipe.id; // Store recipe ID
+                            recipeCard.addEventListener('click', function() {
+                                window.location.href = `recipe.html?id=${recipe.id}`;
+                            });
 
                             const img = document.createElement('img');
                             img.src = recipe.thumbnail_url || 'default.jpg'; // Fallback image if thumbnail_url is null
@@ -48,15 +51,9 @@
                             const p = document.createElement('p');
                             p.textContent = recipe.description || 'A delicious recipe.'; // Default description if not provided
 
-                            const viewRecipeBtn = document.createElement('a');
-                            viewRecipeBtn.href = `recipe.html?id=${recipe.id}`;
-                            viewRecipeBtn.textContent = 'View Recipe';
-                            viewRecipeBtn.classList.add('btn');
-
                             recipeCard.appendChild(img);
                             recipeCard.appendChild(h3);
                             recipeCard.appendChild(p);
-                            recipeCard.appendChild(viewRecipeBtn);
 
                             recipeGallery.appendChild(recipeCard);
                         });
@@ -92,7 +89,6 @@
                 <li><a href="search.html">Search</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-
             </ul>
         </nav>
     </header>
