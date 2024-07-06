@@ -1,21 +1,21 @@
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
+    padding-top: 40px;
     box-sizing: border-box;
-    background-color: #F9F7E8;
+    background-color: #FFF1E4;
 }
 
 header {
     background-color: #FFF1E4;
-    padding: 15px 20px;
+    padding: 5px 20px;
     width: 100%;
     top: 0;
     z-index: 1000;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
+    justify-content: space-between; 
+    align-items: center; 
+    position: fixed; 
 }
 
 .logo-container {
@@ -39,6 +39,7 @@ nav .nav-links {
     justify-content: center;
     margin: 0;
     padding: 0;
+    padding-right: 40px; 
 }
 
 nav .nav-links li {
@@ -58,7 +59,7 @@ nav .nav-links li a:hover {
 }
 
 .forum {
-    padding: 80px 20px;
+    padding: 60px ;
     text-align: center;
     background-color: #FFF1E4;
 }
