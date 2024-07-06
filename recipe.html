@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Details</title>
-    <link rel="stylesheet" href="recipe-styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jacquard+12&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jacquard+12&family=Rubik+Mono+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -64,9 +79,12 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">Baking Community</div>
-            <ul>
+        
+            <div class="logo-container">
+                <img src="image/logo.png" alt="Logo" class="logo-image">
+            </div>
+            <nav>
+            <ul class="nav-links">
                 <li><a href="main.html">Home</a></li>
                 <li><a href="main.html#recipes">Recipes</a></li>
                 <li><a href="forum.html">Forum</a></li>
@@ -76,7 +94,7 @@
                 <li>
                     <form class="search-form">
                         <input type="text" class="search-input" placeholder="Search ingredients...">
-                        <button type="submit">Search</button>
+                        <button type="submit" class="search-btn">Search</button>
                     </form>
                 </li>
             </ul>
@@ -84,11 +102,6 @@
     </header>
     <section class="recipe-details">
         <div class="recipe-content">
-            <div class="video-column">
-                <div class="recipe-video">
-                    Loading...
-                </div>
-            </div>
             <div class="details-column">
                 <h1 class="recipe-title">Loading...</h1>
                 <img class="recipe-image" src="placeholder.jpg" alt="Recipe Image">
@@ -102,10 +115,15 @@
                     <li>Loading...</li>
                 </ul>
             </div>
+            <div class="video-column">
+                <div class="recipe-video">
+                    Loading...
+                </div>
+            </div>
         </div>
     </section>
     <footer>
-        <p>&copy; 2024 Baking Community. All rights reserved.</p>
+        <p>&copy; 2024 Bit & Bytes. All rights reserved.</p>
     </footer>
 </body>
 </html>

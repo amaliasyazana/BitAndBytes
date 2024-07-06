@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bit & Bytes</title>
     <link rel="stylesheet" href="styles.css">
-<<<<<<< Updated upstream
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
@@ -14,20 +13,19 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jacquard+12&family=Rubik+Mono+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
-            <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />    
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
                 <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
             </filter>
         </defs>
     </svg>
-=======
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
->>>>>>> Stashed changes
     <script>
         $(document).ready(function () {
             let from = 0;
             const size = 20;
-            
+
             function fetchRecipes() {
                 const data = null;
 
@@ -40,25 +38,16 @@
                         $recipeGallery.find('.loading').remove(); // Remove loading indicator
 
                         recipes.forEach(recipe => {
-<<<<<<< Updated upstream
                             const recipeCard = document.createElement('div');
                             recipeCard.classList.add('recipe-card');
                             recipeCard.dataset.recipeId = recipe.id; // Store recipe ID
                             recipeCard.addEventListener('click', function() {
                                 window.location.href = `recipe.html?id=${recipe.id}`;
                             });
-=======
-                            const $recipeCard = $('<div class="recipe-card"></div>').data('recipeId', recipe.id);
-                            const $img = $('<img>').attr('src', recipe.thumbnail_url || 'default.jpg').attr('alt', recipe.name);
-                            const $h3 = $('<h3></h3>').text(recipe.name);
->>>>>>> Stashed changes
 
-                            $recipeCard.append($img, $h3);
-                            $recipeCard.click(function () {
-                                window.location.href = `recipe.html?id=${recipe.id}`;
-                            });
+                            const img = document.createElement('img');
+                            img.src = recipe.thumbnail_url || 'default-image.jpg'; // Default image if not provided
 
-<<<<<<< Updated upstream
                             const h3 = document.createElement('h3');
                             h3.textContent = recipe.name;
 
@@ -69,10 +58,7 @@
                             recipeCard.appendChild(h3);
                             recipeCard.appendChild(p);
 
-                            recipeGallery.appendChild(recipeCard);
-=======
-                            $recipeGallery.append($recipeCard);
->>>>>>> Stashed changes
+                            $recipeGallery.append(recipeCard);
                         });
                     }
                 });
@@ -88,7 +74,7 @@
 
             fetchRecipes();
 
-            $('.load-more-btn').click(function () {
+            $('#load-more-btn').click(function () {
                 from += size;
                 fetchRecipes();
             });
@@ -101,7 +87,6 @@
             <img src="image/logo.png" alt="Logo" class="logo-image">
         </div>
         <nav>
-<<<<<<< Updated upstream
             <ul class="nav-links">
                 <li><a href="main.html">Home</a></li>
                 <li><a href="recipes.html">Recipes</a></li>
@@ -110,15 +95,6 @@
                 <li><a href="search.html">Search</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-=======
-            <div class="logo">Baking Community</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#recipes">Recipes</a></li>
-                <li><a href="forum.html">Forum</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="#contact.html">Contact</a></li>
->>>>>>> Stashed changes
             </ul>
         </nav>
     </header>
@@ -138,7 +114,7 @@
         <div class="recipe-gallery">
             <!-- Loading indicator will be displayed here -->
         </div>
-        <button class="load-more-btn">Load More</button>
+        <button id="load-more-btn" class="button">Load More</button>
     </section>
     <footer>
         <p>&copy; 2024 Bit & Bytes. All rights reserved.</p>

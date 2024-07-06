@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baking Community</title>
+    <link rel="stylesheet" href="styles-ama.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let from = 0;
+            const size = 20;
+            
+            function fetchRecipes() {
+                const data = null;
+
+                const xhr = new XMLHttpRequest();
+                xhr.addEventListener('readystatechange', function () {
+                    if (this.readyState === this.DONE) {
+                        const response = JSON.parse(this.responseText);
+                        const recipes = response.results;
+                        const $recipeGallery = $('.recipe-gallery');
+                        $recipeGallery.find('.loading').remove(); // Remove loading indicator
+
+                        recipes.forEach(recipe => {
+                            const $recipeCard = $('<div class="recipe-card"></div>').data('recipeId', recipe.id);
+                            const $img = $('<img>').attr('src', recipe.thumbnail_url || 'default.jpg').attr('alt', recipe.name);
+                            const $h3 = $('<h3></h3>').text(recipe.name);
+                            const $p = $('<p></p>').text(recipe.description || 'A delicious recipe.');
+
+                            $recipeCard.append($img, $h3, $p);
+                            $recipeCard.click(function () {
+                                window.location.href = `recipe.html?id=${recipe.id}`;
+                            });
+
+                            $recipeGallery.append($recipeCard);
+                        });
+                    }
+                });
+
+                xhr.open('GET', `https://tasty.p.rapidapi.com/recipes/list?from=${from}&size=${size}&tags=under_30_minutes`);
+                xhr.setRequestHeader('x-rapidapi-key', 'c733c4e178msh80dba6d81be6151p1df09ejsncfe133c0f079');
+                xhr.setRequestHeader('x-rapidapi-host', 'tasty.p.rapidapi.com');
+                xhr.send(data);
+
+                // Display loading indicator
+                $('.recipe-gallery').append('<p class="loading">Loading...</p>');
+            }
+
+            fetchRecipes();
+
+            $('.load-more-btn').click(function () {
+                from += size;
+                fetchRecipes();
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Baking Community</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to the Baking Community</h1>
+            <p>Share your favorite recipes, connect with other bakers, and learn new baking techniques.</p>
+            <a href="#recipes" class="btn">Explore Recipes</a>
+        </div>
+    </section>
+    <section class="recipes" id="recipes">
+        <h2>Featured Recipes</h2>
+        <div class="recipe-gallery">
+            <!-- Loading indicator will be displayed here -->
+        </div>
+        <button class="load-more-btn">Load More</button>
+    </section>
+    <footer>
+        <p>&copy; 2024 Baking Community. All rights reserved.</p>
+    </footer>
+</body>
+</html>
