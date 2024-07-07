@@ -33,7 +33,7 @@
         
         <div class="contact-form">
             <h2>Send us a Message</h2>
-            <form action="submit_contact_form.php" method="POST">
+            <form id="contactForm">
                 <label for="name">Your Name:</label>
                 <input type="text" id="name" name="name" required>
                 
@@ -45,10 +45,24 @@
                 
                 <button type="submit" class="btn">Send Message</button>
             </form>
+            <p id="confirmationMessage" style="display:none; color: green; font-weight: bold;">MESSAGE SENT</p>
         </div>
     </section>
     <footer>
         <p>&copy; 2024 Baking Community. All rights reserved.</p>
     </footer>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show the alert message
+            alert('Send message to the aidazawawi01@gmail.com');
+            
+            // Optionally, clear the form fields
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+        });
+    </script>
 </body>
 </html>

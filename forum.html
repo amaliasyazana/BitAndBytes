@@ -63,6 +63,9 @@
             const imageUpload = document.getElementById('imageUpload');
             const commentsSection = document.querySelector('.comments');
 
+            // Load comments from local storage
+            loadComments();
+
             commentForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
@@ -70,29 +73,57 @@
                 const file = imageUpload.files[0];
 
                 if (commentText !== '') {
-                    const commentDiv = document.createElement('div');
-                    commentDiv.classList.add('comment');
-
-                    const textDiv = document.createElement('div');
-                    textDiv.textContent = commentText;
-                    commentDiv.appendChild(textDiv);
+                    const comment = {
+                        text: commentText,
+                        image: null
+                    };
 
                     if (file) {
                         const reader = new FileReader();
                         reader.onload = function(e) {
-                            const img = document.createElement('img');
-                            img.src = e.target.result;
-                            img.alt = "User uploaded image";
-                            commentDiv.appendChild(img);
-                        }
+                            comment.image = e.target.result;
+                            saveComment(comment);
+                            displayComment(comment);
+                        };
                         reader.readAsDataURL(file);
+                    } else {
+                        saveComment(comment);
+                        displayComment(comment);
                     }
 
-                    commentsSection.appendChild(commentDiv);
                     commentInput.value = ''; // Clear the input
                     imageUpload.value = ''; // Clear the file input
                 }
             });
+
+            function saveComment(comment) {
+                let comments = JSON.parse(localStorage.getItem('comments')) || [];
+                comments.push(comment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+            }
+
+            function loadComments() {
+                const comments = JSON.parse(localStorage.getItem('comments')) || [];
+                comments.forEach(displayComment);
+            }
+
+            function displayComment(comment) {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+
+                const textDiv = document.createElement('div');
+                textDiv.textContent = comment.text;
+                commentDiv.appendChild(textDiv);
+
+                if (comment.image) {
+                    const img = document.createElement('img');
+                    img.src = comment.image;
+                    img.alt = "User uploaded image";
+                    commentDiv.appendChild(img);
+                }
+
+                commentsSection.appendChild(commentDiv);
+            }
         });
     </script>
 </body>
