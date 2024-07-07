@@ -437,3 +437,10 @@ footer {
 .search-btn:hover {
     background-color: #FF6347; /* button background color on hover */
 }
+
+.animate__animated {
+    --animate-duration: 2s; /* Change duration as needed */
+    --animate-delay: 1s; /* Change delay as needed */
+}
+
+
