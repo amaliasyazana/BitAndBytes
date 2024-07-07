@@ -49,7 +49,7 @@
                 $('.recipe-title').text(recipe.name);
                 $('.recipe-description').text(recipe.description || 'A delicious recipe.');
                 $('.recipe-ingredients').html(recipe.sections[0].components.map(component => `<li>${component.raw_text}</li>`).join(''));
-                $('.recipe-preparations').html(recipe.instructions.map(instruction => `<li>${instruction.display_text}</li>`).join(''));
+                $('.recipe-preparations').html(recipe.instructions.map((instruction, index) => `<li><strong>Step ${index + 1}:</strong> ${instruction.display_text}</li>`).join(''));
                 if (recipe.thumbnail_url) {
                     $('.recipe-image').attr('src', recipe.thumbnail_url);
                 } else {
@@ -79,18 +79,17 @@
 </head>
 <body>
     <header>
-        
-            <div class="logo-container">
-                <img src="image/logo.png" alt="Logo" class="logo-image">
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="main.html">Home</a></li>
-                    <li><a href="forum.html">Forum</a></li>
-                    <li><a href="search.html">Search</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+        <div class="logo-container">
+            <img src="image/logo.png" alt="Logo" class="logo-image">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </nav>
     </header>
     <section class="recipe-details">

@@ -42,7 +42,6 @@ nav .nav-links {
     padding-right: 40px; 
 }
 
-
 nav .nav-links li {
     margin-left: 20px;
 }
@@ -275,12 +274,14 @@ footer {
 
 .recipe-details .video-column {
     flex: 1;
-    max-width: 400px;
+    max-width: 600px;
+    position: sticky;
+    top: 150px; /* Adjust this value to control the distance from the top of the viewport */
 }
 
 .recipe-details .video-column .recipe-video {
     position: relative;
-    padding-bottom: 100%; /* 16:9 aspect ratio for video */
+    padding-bottom: 100%; /* Square aspect ratio for video */
     height: 0;
     overflow: hidden;
     margin-bottom: 20px;
@@ -296,6 +297,7 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .recipe-details .details-column {
     flex: 1;
@@ -347,7 +349,8 @@ footer {
 .recipe-details .recipe-ingredients li,
 .recipe-details .recipe-preparations li {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Increased margin-bottom for more space between lines */
+    line-height: 1.6; /* Added line-height for better spacing */
     color: #25242A;
     font-family: "Ubuntu", sans-serif;
 }
@@ -391,6 +394,7 @@ footer {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 .search-form {
     display: flex;
     align-items: center;
