@@ -2,9 +2,9 @@
 
 - Turn on Apache and MySQL on Xampp Control 
 
-- Run on Localhost
+- Run main.html on Localhost to open the page
 
-- *Homepage* will be displayed first, User can click on the explore recipes button to explore new recipes.
+- *Homepage* will be displayed first, User can click on the explore recipes button to explore new recipes. Click Load more button to display more recipes.
 
 - The recipe card can be clicked and it will bring to the recipe page and display the ingridients , preparations steap and video (some menu might have no video).
 
@@ -15,6 +15,8 @@
 - *About* page is the introduction to our group.
 
 - *Contact* page is for user to leave meassages to us. User need to enter name, email, and their message and it will be sent to our email.
+
+-API has limit per day
 
 
 ## Group Members 
