@@ -1,6 +1,8 @@
 ## Features 
 
-- Run on Localhost 
+- Turn on Apache and MySQL on Xampp Control 
+
+- Run on Localhost
 
 - *Homepage* will be displayed first, User can click on the explore recipes button to explore new recipes.
 
@@ -8,7 +10,7 @@
 
 - *Forum* page has the comment section where user can submit any comment or share new menu for other user to see. Image can also be uploaded on the page.
 
-- *Search* page has the navigation bar for user to search on any recipe or ingridients that they want to search for.
+- *Search* page has the search bar for user to search ingridients that they want to search for and list of the recipes with the ingredient will be generated.
 
 - *About* page is the introduction to our group.
 
